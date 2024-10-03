@@ -37,6 +37,16 @@ class NoteController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Note $note)
+    {
+        return Inertia::render('Notes/Edit', [
+            'note' => $note,
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -45,14 +55,6 @@ class NoteController extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Note $note)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
