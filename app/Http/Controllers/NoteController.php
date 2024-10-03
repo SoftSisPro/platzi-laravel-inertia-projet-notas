@@ -19,6 +19,16 @@ class NoteController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function show(Note $note)
+    {
+        return Inertia::render('Notes/Show', [
+            'note' => $note,
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -34,13 +44,7 @@ class NoteController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Note $note)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
