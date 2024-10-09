@@ -9,6 +9,11 @@
         excerpt: props.note.excerpt,
         content: props.note.content,
     })
+
+    const submit = () => {
+        form.put(route('notes.update',props.note.id), form);
+    }
+
 </script>
 
 <template>
@@ -31,7 +36,7 @@
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shadow bg-white md:rounded-md p-4">
-                            <form>
+                            <form @submit.prevent="submit">
                                 <label class="text-sm block font-medium text-gray-700">Resumen:</label>
                                 <textarea
                                     class="form-input w-full rounded-md shadow-sm"

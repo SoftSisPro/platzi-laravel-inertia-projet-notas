@@ -9,4 +9,6 @@ class Note extends Model
 {
     /** @use HasFactory<\Database\Factories\NoteFactory> */
     use HasFactory;
+
+    protected $guarded = ['id'];
 }
