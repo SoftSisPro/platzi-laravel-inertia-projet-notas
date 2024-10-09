@@ -32,16 +32,20 @@
                                     v-model="form.content"
                                     rows="8"
                                 ></textarea>
-                                <div class=" flex justify-between items-center">
-                                    <Link :href="route('notes.index')" class="text-blue-500">
-                                        Volver
-                                    </Link>
-                                    <button
+                                <button
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                                         Guardar Cambios
-                                    </button>
-                                </div>
+                                </button>
                             </form>
+                            <div class="pt-4 mt-4 border-t flex justify-between items-center">
+                                <Link :href="route('notes.index')" class="text-blue-500 hover:text-blue-800">
+                                    Volver
+                                </Link>
+                                <a href="#" @click.prevent="destroy" class="text-red-500 hover:text-red-900">
+                                    Eliminar
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -64,6 +68,12 @@
 
     const submit = () => {
         form.put(route('notes.update',props.note.id), form);
+    }
+
+    const destroy = () => {
+        if (confirm('¿Estas seguro de eliminar esta nota?')) {
+            form.delete(route('notes.destroy', props.note.id));
+        }
     }
 
 </script>
