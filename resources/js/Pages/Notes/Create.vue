@@ -1,7 +1,6 @@
 
-
 <template>
-    <AppLayout title="Editar Notas">
+    <AppLayout title="Crear Notas">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Modulo de Notas
@@ -14,15 +13,15 @@
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg text-gray-900">Editar una nota</h3>
-                            <p class="text-sm text-gray-600">Si editas no puedes volver al estado anterior</p>
+                            <h3 class="text-lg text-gray-900">Crear una nota</h3>
+                            <p class="text-sm text-gray-600">Luego de crear la podras editar</p>
                         </div>
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shadow bg-white md:rounded-md p-4">
                             <form @submit.prevent="submit">
                                 <label class="text-sm block font-medium text-gray-700">Resumen:</label>
-                                <textarea
+                                <textarea autofocus
                                     class="form-input w-full rounded-md shadow-sm"
                                     v-model="form.excerpt"
                                 ></textarea>
@@ -38,7 +37,7 @@
                                     </Link>
                                     <button
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                                        Guardar Cambios
+                                        Crear
                                     </button>
                                 </div>
                             </form>
@@ -53,17 +52,14 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
     import { Link, useForm } from '@inertiajs/vue3';
-    const props = defineProps({
-        note: Object,
-    })
 
     const form = useForm({
-        excerpt: props.note.excerpt,
-        content: props.note.content,
+        excerpt: '',
+        content: '',
     })
 
     const submit = () => {
-        form.put(route('notes.update',props.note.id), form);
+        form.post(route('notes.store'), form);
     }
 
 </script>
